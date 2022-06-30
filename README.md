@@ -4,5 +4,5 @@
 - ```sudo apt-get update```
 - ```sudo apt-get install ansible```
 
-### Start project
-- ```ansible-playbook simple.yml```
+### Work with project ( comment or uncomment what necessary)
+- ```ansible-playbook run.yml```

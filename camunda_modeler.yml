@@ -1,0 +1,11 @@
+- name: Download and unarchive modeler
+  ansible.builtin.unarchive:
+    src: https://downloads.camunda.cloud/release/camunda-modeler/5.0.0/camunda-modeler-5.0.0-linux-x64.tar.gz
+    dest: ./
+    remote_src: yes
+- name: Run camunda modeler
+  command: "./camunda-modeler"
+  async: 1000
+  poll: 0
+  args:
+    chdir: "camunda-modeler-5.0.0-linux-x64"

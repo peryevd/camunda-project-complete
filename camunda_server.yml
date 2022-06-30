@@ -1,0 +1,52 @@
+- name: create directory for unarchiving server camunda
+  file:
+    path: ./camunda-server
+    state: directory
+- name: Download and unarchive camunda server
+  ansible.builtin.unarchive:
+    src: https://downloads.camunda.cloud/release/camunda-bpm/run/7.17/camunda-bpm-run-7.17.0.zip
+    dest: ./camunda-server
+    remote_src: yes
+- name: Ansible update allowed-origins
+  lineinfile:
+    path: ./camunda-server/configuration/default.yml
+    search_string: 'allowed-origins: "*"'
+    line: '      allowed-origins: "http://172.17.0.3:8080"'
+- name: Add allow-credentials
+  lineinfile:
+    path: ./camunda-server/configuration/default.yml
+    line: '      allow-credentials: "true"'
+    insertafter: '      allowed-origins: "http://172.17.0.3:8080"'
+    state: present
+- name: Download postgress driver
+  ansible.builtin.get_url:
+    url: https://jdbc.postgresql.org/download/postgresql-42.4.0.jar
+    dest: ./camunda-server/configuration/userlib
+- name: Delete old driver
+  file:
+    path: ./camunda-server/configuration/userlib/h2-2.0.206.jar
+    state: absent
+- name: Update db url
+  lineinfile:
+    path: ./camunda-server/configuration/default.yml
+    search_string: "  url: jdbc:h2:./camunda-h2-default/process-engine;TRACE_LEVEL_FILE=0;DB_CLOSE_ON_EXIT=FALSE"
+    line: "  url: jdbc:postgresql://localhost:5432/camunda"
+- name: Update db driver
+  lineinfile:
+    path: ./camunda-server/configuration/default.yml
+    search_string: "  driver-class-name: org.h2.Driver"
+    line: "  driver-class-name: org.postgresql.Driver"
+- name: Update db username
+  lineinfile:
+    path: ./camunda-server/configuration/default.yml
+    search_string: "  username: sa"
+    line: "  username: dimka"
+- name: Update db password
+  lineinfile:
+    path: ./camunda-server/configuration/default.yml
+    search_string: "  password: "
+    line: "  password: 12345678"
+- name: Run camunda server
+  command: "./start.sh"
+  args:
+    chdir: "camunda-server"
