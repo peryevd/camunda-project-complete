@@ -12,10 +12,6 @@
       file:
         path: ./camunda-server
         state: absent
-    - name: Delete task client
-      file:
-        path: ./camunda-js-task-client
-        state: absent
     - name: Delete modeler
       file:
         path: ./camunda-modeler-5.0.0-linux-x64

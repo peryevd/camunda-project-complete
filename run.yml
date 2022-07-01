@@ -5,9 +5,6 @@
     # ###### Settings camunda server:
     - include: camunda_server.yml
 
-    # ###### Settings external task:
-    - include: external_task.yml
-
     # ###### Settings camunda modeler:
     - include: camunda_modeler.yml
 
