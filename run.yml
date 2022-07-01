@@ -3,16 +3,13 @@
   hosts: localhost
   tasks:
     # ###### Settings camunda server:
-    # - include: camunda_server.yml
+    - include: camunda_server.yml
 
     # ###### Settings external task:
-    # - include: external_task.yml
+    - include: external_task.yml
 
     # ###### Settings camunda modeler:
-    # - include: camunda_modeler.yml
+    - include: camunda_modeler.yml
 
     ####### Settings excamad:
-    # - include: excamad.yml
-
-    ####### Clear project:
-    - include: exit.yml
+    - include: excamad.yml
