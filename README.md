@@ -1,5 +1,6 @@
 ### Requirments
 - Ubuntu 20.04
+- postgres 12.11
 
 ### Install ansible
 

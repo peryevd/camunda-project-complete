@@ -8,5 +8,8 @@
     # ###### Settings camunda modeler:
     - include: camunda_modeler.yml
 
-    ####### Settings excamad:
+    ###### Settings excamad:
     - include: excamad.yml
+
+    ####### Settings postgres:
+    # - include: postgres.yml
