@@ -4,5 +4,8 @@
 - ```sudo apt-get update```
 - ```sudo apt-get install ansible```
 
-### Work with project ( comment or uncomment what necessary)
+### Install project (comment or uncomment what necessary)
 - ```ansible-playbook run.yml```
+
+### Delete project (stop processes, uninstal docker container, remove folder)
+- ```ansible-playbook clean.yml```
