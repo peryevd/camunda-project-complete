@@ -1,3 +1,6 @@
+### Requirments
+- Ubuntu 20.04
+
 ### Install ansible
 
 - ```sudo apt-add-repository ppa:ansible/ansible```
